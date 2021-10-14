@@ -14,6 +14,7 @@ class App extends Component{
 
       <Navbar title="Github Finder" icon='fab fa-github'/>
       <div className='container'>
+
       <Users />
       </div>
     </Fragment>
