@@ -1,40 +1,31 @@
-import React, { Component } from 'react'
+import React from 'react'
 import UserItem from './UserItem'
+import Spinner from '../layout/Spinner'
+import PropTypes from 'prop-types';
 
-class Users extends Component {
-state = {
-  users: [
-    {
-      id: '1',
-      login: "mojombo",
-      avatar_url:"https://avatars.githubusercontent.com/u/1?v=4",
-      html_url: "https://github.com/mojombo"
-    },
-    {
-      id: '2',
-      login: "defunkt",
-      avatar_url: "https://avatars.githubusercontent.com/u/2?v=4",
-      html_url: "https://github.com/defunkt"
-    },
-    {
-      id: '3',
-      login: "pjhyett",
-      avatar_url: "https://avatars.githubusercontent.com/u/3?v=4",
-    }
-  ]
-}
+const Users = ({ users, loading }) => {
 
-  render() {
+  if(loading){
+    return <Spinner />
+  }
+  else {
+
+  
     return (
       <div style={userStyle}>
-        {this.state.users.map(user => {
+        {users.map(user => {
           return (
           <UserItem key={user.id} user={user} />
           )
         })}
       </div>
-    )
-  }
+    );
+      }
+}
+
+Users.propTypes = {
+  users: PropTypes.array.isRequired,
+  loading: PropTypes.bool.isRequired
 }
 
 const userStyle = {
@@ -45,3 +36,10 @@ const userStyle = {
 export default Users
 
 
+
+// db.posts.insertOne({
+//   title: 'post one',
+//   body: 'body of post 1',
+//   category: 'news',
+//   date: Date()
+// })
