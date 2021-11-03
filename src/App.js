@@ -5,7 +5,7 @@ import Search from './components/users/Search';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import './App.css';
-
+//make commit
 class App extends Component{
   state = {
     users: [],
@@ -20,6 +20,7 @@ class App extends Component{
     this.setState({
       loading: true
     });
+
 
     const res = await axios.get(`https://api.github.com/users?client_id=${process.env.REACT_APP_GITHUB_CLIENT_ID}&client_secret=${process.env.REACT_APP_GITHUB_CLIENT_SECRET}`)
     this.setState({
@@ -40,6 +41,11 @@ searchUsers = async text => {
 console.log("in app", text)
   }
 
+clearUsers = () => this.setState({
+users: [],
+loading: false
+})
+
   render() {
 
   return (
@@ -47,7 +53,7 @@ console.log("in app", text)
 
       <Navbar title="Github Finder" icon='fab fa-github'/>
       <div className='container'>
-      <Search searchUsers={this.searchUsers}/>
+      <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers}/>
       <Users loading={this.state.loading} users={this.state.users}/>
       </div>
     </Fragment>
