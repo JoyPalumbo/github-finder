@@ -5,7 +5,7 @@ import Search from './components/users/Search';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import './App.css';
-//make commit
+//make commit to switch to main
 class App extends Component{
   state = {
     users: [],
