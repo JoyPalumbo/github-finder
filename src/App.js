@@ -2,14 +2,17 @@ import React, {Fragment, Component } from 'react';
 import  Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
 import Search from './components/users/Search';
+import Alert from './components/layout/Alert';
 import PropTypes from 'prop-types';
 import axios from 'axios';
 import './App.css';
+
 //trying to change to main
 class App extends Component{
   state = {
     users: [],
-    loading: false
+    loading: false,
+    alert: null
   }
 
   static propTypes ={
@@ -38,13 +41,21 @@ searchUsers = async text => {
     users: res.data.items,
     loading: false
   })
-console.log("in app", text)
+console.log("in app", text, alert)
   }
 
-clearUsers = () => this.setState({
+clearUsers = () =>  this.setState({
 users: [],
 loading: false
 })
+
+
+setAlert = (message, type) =>{
+  this.setState({ alert: {
+    message: message,
+    type: type
+  } })
+}
 
   render() {
     const { users, loading } = this.state
@@ -54,7 +65,8 @@ loading: false
 
       <Navbar title="Github Finder" icon='fab fa-github'/>
       <div className='container'>
-      <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers} showClear={users.length > 0 ? true : false}/>
+        <Alert alert={this.state.alert}/>
+      <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers} showClear={users.length > 0 ? true : false} setAlert={this.setAlert}/>
       <Users loading={loading} users={users}/>
       </div>
     </Fragment>
