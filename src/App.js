@@ -1,4 +1,5 @@
 import React, {Fragment, Component } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import  Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
 import Search from './components/users/Search';
@@ -64,15 +65,16 @@ setAlert = (message, type) =>{
     const { users, loading } = this.state
 
   return (
-    <Fragment>
-
+    <Router>
+    <div className="App">
       <Navbar title="Github Finder" icon='fab fa-github'/>
       <div className='container'>
         <Alert alert={this.state.alert}/>
       <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers} showClear={users.length > 0 ? true : false} setAlert={this.setAlert}/>
       <Users loading={loading} users={users}/>
       </div>
-    </Fragment>
+      </div>
+      </Router>
   );
   }
 }
