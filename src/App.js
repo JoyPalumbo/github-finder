@@ -55,6 +55,9 @@ setAlert = (message, type) =>{
     message: message,
     type: type
   } })
+  setTimeout(() => 
+    this.setState({alert: null}), 5000
+  )
 }
 
   render() {
