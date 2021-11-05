@@ -70,8 +70,18 @@ setAlert = (message, type) =>{
       <Navbar title="Github Finder" icon='fab fa-github'/>
       <div className='container'>
         <Alert alert={this.state.alert}/>
-      <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers} showClear={users.length > 0 ? true : false} setAlert={this.setAlert}/>
+        <Switch>
+          <Route exact path='/' render={props => (
+            <Fragment>
+                    <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers} showClear={users.length > 0 ? true : false} setAlert={this.setAlert}/>
       <Users loading={loading} users={users}/>
+            </Fragment>
+          )}>
+
+          </Route>
+        </Switch>
+      {/* <Search searchUsers={this.searchUsers} clearUsers={this.clearUsers} showClear={users.length > 0 ? true : false} setAlert={this.setAlert}/>
+      <Users loading={loading} users={users}/> */}
       </div>
       </div>
       </Router>
