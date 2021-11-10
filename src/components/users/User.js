@@ -1,17 +1,21 @@
 import React, { Fragment,Component } from 'react';
 import Spinner from '../layout/Spinner';
-import PropTypes from 'prop-type'
+import PropTypes from 'prop-types'
+import Repos from '../repos/Repos';
 import {Link} from 'react-router-dom'
 
 export class User extends Component {
   componentDidMount(){
     this.props.getUser(this.props.match.params.login);
+    this.props.getUserRepos(this.props.match.params.login);
   }
 
-  static propTpypes = {
+  static propTypes = {
     loading: PropTypes.bool,
     user: PropTypes.object.isRequired,
-    getUser: PropTypes.func.isRequired
+    getUser: PropTypes.func.isRequired,
+    repos: PropTypes.array.isRequired,
+    getUserRepos: PropTypes.func.isRequired,
   }
   render() {
     const {
@@ -30,7 +34,7 @@ export class User extends Component {
       hireable
     } = this.props.user
 
-    const {loading} = this.props;
+    const {loading, repos} = this.props;
 
     if(loading) return <Spinner />
 
@@ -78,20 +82,14 @@ export class User extends Component {
   </div>
 </div>
 <div className="card text-center" >
-  <div className="badge badge-primary">
-          Followers: {followers}
+  <div className="badge badge-primary">Followers: {followers}</div>
+  <div className="badge badge-success">Following: {following} </div>
+  <div className="badge badge-light">Public Repos: {public_repos}</div>
+  <div className="badge badge-dark">Public Gists {public_gists}</div>
   </div>
-  <div className="badge badge-success">
-          Following: {following}
-  </div>
-  <div className="badge badge-light">
-          Public Repos: {public_repos}
-  </div>
-  <div className="badge badge-dark">
-          Public Gists {public_gists}
-  </div>
-  </div>
+        <Repos repos={repos} />
       </Fragment>
+
     )
   }
 }
