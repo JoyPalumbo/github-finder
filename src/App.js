@@ -8,6 +8,7 @@ import About from './components/pages/About';
 import User from './components/users/User';
 import PropTypes from 'prop-types';
 import axios from 'axios';
+import GithubState from './context/github/GithubState'
 import './App.css';
 
 //trying to change to main
@@ -76,6 +77,7 @@ const showAlert = (message, type) =>{
 }
 
   return (
+    <GithubState> 
     <Router>
     <div className="App">
       <Navbar title="Github Finder" icon='fab fa-github'/>
@@ -103,6 +105,7 @@ const showAlert = (message, type) =>{
       </div>
       </div>
       </Router>
+      </GithubState>
   );
 }
 
