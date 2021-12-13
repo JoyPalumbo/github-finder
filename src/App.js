@@ -1,4 +1,4 @@
-import React, {Fragment, useState } from 'react';
+import React, {Fragment} from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import  Navbar from './components/layout/Navbar';
 import Users from './components/users/Users';
@@ -7,6 +7,7 @@ import Alert from './components/layout/Alert';
 import About from './components/pages/About';
 import User from './components/users/User';
 import GithubState from './context/github/GithubState'
+import AlertState from './context/alert/AlertState'
 import './App.css';
 
 //trying to change to main
@@ -15,7 +16,7 @@ const App =() => {
   // const [user, setUser] = useState({})
   // const [repos, setRepos] = useState([])
   // const [loading, setLoading] = useState(false)
-  const [alert, setAlert] = useState(null)
+  // const [alert, setAlert] = useState(null)
 
 
   // static propTypes ={
@@ -63,25 +64,26 @@ const App =() => {
 // }
 
 
-const showAlert = (message, type) =>{
- setAlert(message, type)
-  setTimeout(() => 
-    setAlert(null), 5000)
-}
+// const showAlert = (message, type) =>{
+//  setAlert(message, type)
+//   setTimeout(() => 
+//     setAlert(null), 5000)
+// }
 
   return (
     <GithubState> 
+      <AlertState> 
     <Router>
     <div className="App">
       <Navbar title="Github Finder" icon='fab fa-github'/>
       <div className='container'>
-        <Alert alert={alert}/>
+        <Alert />
         <Switch>
           <Route exact path="/" render={props => (
             <Fragment>
                     <Search 
 
-                    setAlert={showAlert}/>
+                  />
       <Users />
             </Fragment>
           )}/>
@@ -94,8 +96,10 @@ const showAlert = (message, type) =>{
       </div>
       </div>
       </Router>
+      </AlertState>
       </GithubState>
   );
 }
 
 export default App;
+// test
