@@ -5,12 +5,6 @@ import {Link} from 'react-router-dom';
 import GithubContext from '../../context/github/githubContext'
 
 const User = ({match}) => {
-
-  // componentDidMount(){
-
-  //   this.props.getUser(this.props.match.params.login);
-  //   this.props.getUserRepos(this.props.match.params.login);
-  // }
   const githubContext = useContext(GithubContext)
   const { getUser, loading, user, repos, getUserRepos} = githubContext;
 
@@ -40,7 +34,6 @@ useEffect(() => {
       hireable
     } = user
 
-  //   const {loading, repos} = this.props;
 
     if(loading) return <Spinner />
 

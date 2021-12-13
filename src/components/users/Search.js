@@ -19,7 +19,6 @@ const alertContext = useContext(Alertcontext);
     }
     else {
       githubContext.searchUsers(text)
-    //  searchUsers(text)
       setText('')
     }
    

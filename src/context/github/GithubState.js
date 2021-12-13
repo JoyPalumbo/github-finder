@@ -31,10 +31,6 @@ const searchUsers = async text => {
     type: SEARCH_USERS,
     payload: res.data.items
   })
-  // setUsers(res.data.items)
-  // setLoading(false)
-// console.log("in app", text, alert)
-  }
 
   // Get gingle github user
 const getUser = async (username) => {

@@ -37,9 +37,3 @@ export default Users
 
 
 
-// db.posts.insertOne({
-//   title: 'post one',
-//   body: 'body of post 1',
-//   category: 'news',
-//   date: Date()
-// })
